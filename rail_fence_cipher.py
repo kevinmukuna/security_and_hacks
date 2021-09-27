@@ -34,15 +34,28 @@ def enciphering(string_input, fence_depth=3):
                 up_down = False
         else:
             matrix[depth][index_of_letter] = each_letter
-            depth -=1
+            depth -= 1
             if depth - 1 < 0:
                 up_down = True
         index_of_letter += 1
 
-    for each_list in matrix:
-        print(each_list)
+    return matrix
+
+
+def deciphering(string_input, depth=3):
+    pass
+
+
+def enciphered_message(ciphered_text):
+    message = ""
+    for each_list in ciphered_text:
+        for each_character in each_list:
+            if each_character != ".":
+                message += each_character
+    return message.upper()
 
 
 if __name__ == "__main__":
     input_string = "meet me at the toga party".replace(" ", "")
-    enciphering(string_input=input_string)
+    cipher = enciphered_message(ciphered_text=enciphering(string_input=input_string))
+    print(cipher)
