@@ -10,7 +10,6 @@
 #   manage to transform the maths equation into this python
 #   code or if your just need explanation
 ###########################################################
-from pickle import GLOBAL
 import random
 
 MODULO = None
@@ -40,13 +39,13 @@ def list_of_prime_numbers(prime_range=1000, array_size=100):
                         break
                     if num not in array_of_prime:
                         array_of_prime.append(num)
-            print(f"length of list {len(array_of_prime)}")
     return sorted(array_of_prime)
 
 
 def generate_prime_pq(default_range=25):
     """
-    :param default_range: random range for prime number(you may remove this if you want to use standard range from 1 to whatever)
+    :param default_range: random range for prime 
+        number(you may remove this if you want to use standard range from 1 to whatever)
     @return modulo and base (p, q)
     """
    
@@ -62,26 +61,45 @@ def generate_prime_pq(default_range=25):
     return p, q
 
 def modulo_and_base():
+    """
+    updates MODULO and BASE values
+    """
     global MODULO, BASE
     MODULO, BASE = generate_prime_pq()
 
 def alice_bob_random_int():
+    """
+    ALICE(Alice chooses a secret integer ) AND 
+    BOB(Bob chooses a secret integer ) CHOOSE A SECRET KEY, RANDOMLY
+    """
     global ALICE, BOB
     ALICE = random.randint(25, 100)
     BOB = random.randint(7, 50)
 
 def alice():
+    """
+    sends Bob A = g**a mod p
+    """
     print(f"Alice is random number is {ALICE}")
     return ((BASE**ALICE) % MODULO)
 
 def bob():
+    """
+    sends Alice B = g**b mod p
+    """
     print(f"Bob is random number is {BOB}")
     return ((BASE**BOB) % MODULO)
 
 def alice_compute_key():
+    """
+    Alice computes s = B**a mod p
+    """
     return ((bob()**ALICE) % MODULO)
 
 def bob_compute_key():
+    """
+    Bob computes s = A**b mod p
+    """
     return ((alice()**BOB) % MODULO)
 
 if __name__ == "__main__":
