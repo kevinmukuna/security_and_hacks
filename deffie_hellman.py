@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 ############################################################
 # Author : Kevin Mukuna
-# Date : 02/11/2020
+# Date : 14/02/2022
 # deffie Hellman Key Exchange Algorithm
 # Reason: written out of boredom
 # NB : these are written straight from math equations
@@ -102,10 +102,22 @@ def bob_compute_key():
     """
     return ((alice()**BOB) % MODULO)
 
+def verify_keys():
+    """
+    verifies that both bob and alice derived with the same keys
+    in a real system, this verification is done through the use of 
+    public key infrastructure
+    """
+    alice_ = alice_compute_key()
+    bob_ = bob_compute_key()
+    if (alice_ == bob_):
+        print(f"Both Alice and Bob computed Key={alice_}")
+        return True
+    return False
+
 if __name__ == "__main__":
     modulo_and_base()
     alice_bob_random_int()
-    print(f"Alice computed key is {alice_compute_key()}")
-    print(f"Bob Computed key is {bob_compute_key()}")
-
+    verify_keys()
+    
 
