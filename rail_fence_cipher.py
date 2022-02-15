@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ############################################################
 # Author : Kevin Mukuna
-# Date : 27/09/20221
+# Date : 27/09/2021
 # Rail fence cipher encryption
 # Reason: written out of boredom
 # NB : these are written straight from math equations
